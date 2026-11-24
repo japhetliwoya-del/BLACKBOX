@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07110c">
+  <title>BLACKBOX | Developer Environment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">B<span>.</span></div>
+        <div>
+          <div class="brand-name">BLACKBOX</div>
+          <div class="brand-subtitle">VIRTUAL DEVELOPER ENVIRONMENT</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="system-indicator"><i></i> SYSTEM ONLINE</span>
+        <button class="icon-button" id="helpButton" title="Help" aria-label="Help">?</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="main-column">
+        <section class="stats-grid">
+          <article class="stat-card"><span class="stat-name">SYSTEM STATUS</span><strong id="systemStatus">ONLINE</strong><small>All modules operational</small></article>
+          <article class="stat-card"><span class="stat-name">COMMANDS RUN</span><strong id="commandCount">0</strong><small>Stored in this browser</small></article>
+          <article class="stat-card"><span class="stat-name">SESSION UPTIME</span><strong id="uptime">0s</strong><small>Current browser session</small></article>
+          <article class="stat-card"><span class="stat-name">ACTIVE ROLE</span><strong id="activeRole">DEVELOPER</strong><small id="roleDescription">Full simulated access</small></article>
+        </section>
+
+        <section class="terminal-panel">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">COMMAND INTERFACE</span>
+              <h1>System Terminal</h1>
+            </div>
+            <div class="panel-actions">
+              <span class="terminal-state"><i></i> READY</span>
+              <button class="subtle-button" id="clearButton" type="button">CLEAR</button>
+            </div>
+          </div>
+
+          <div class="terminal-output" id="output" role="log" aria-live="polite">
+            <div class="welcome-block">
+              <div class="welcome-mark">BLACKBOX<span>_</span></div>
+              <p class="welcome-version">VIRTUAL ENVIRONMENT // VERSION 2.1.0</p>
+            </div>
+            <p class="out-success">Connection established. Welcome back, developer.</p>
+            <p>Type <span class="inline-code">help</span> to explore commands or <span class="inline-code">tutorial</span> for a quick start.</p>
+          </div>
+
+          <form class="command-form" id="commandForm" autocomplete="off">
+            <label class="prompt" for="command">root@blackbox:<span id="promptPath">~</span>$</label>
+            <input id="command" name="command" type="text" spellcheck="false" autocomplete="off" placeholder="Enter a command..." autofocus>
+            <button type="submit" class="run-button">RUN <span>↵</span></button>
+          </form>
+          <div class="terminal-bottom">
+            <span>SECURED WEB HOST · SIMULATED LINUX</span>
+            <span><kbd>↑</kbd><kbd>↓</kbd> HISTORY <span class="dot-separator">·</span> <kbd>CTRL</kbd> + <kbd>L</kbd> CLEAR</span>
+          </div>
+        </section>
+
+        <section class="quick-section">
+          <div class="section-heading">
+            <div><span class="eyebrow">SHORTCUTS</span><h2>Quick commands</h2></div>
+            <span class="muted">Select to run</span>
+          </div>
+          <div class="quick-grid">
+            <button class="quick-command" data-command="help"><b>help</b><span>Command guide</span></button>
+            <button class="quick-command" data-command="ls"><b>ls</b><span>List files</span></button>
+            <button class="quick-command" data-command="status"><b>status</b><span>System status</span></button>
+            <button class="quick-command" data-command="whoami"><b>whoami</b><span>Current role</span></button>
+          </div>
+        </section>
+      </section>
+
+      <aside class="side-column">
+        <section class="side-card">
+          <div class="side-heading"><div><span class="eyebrow">VIRTUAL STORAGE</span><h2>File explorer</h2></div><button id="refreshFiles" class="tiny-button" title="Refresh files">↻</button></div>
+          <div class="path-label" id="explorerPath">/root</div>
+          <div class="file-list" id="fileList"></div>
+          <div class="side-foot">BLACKBOX VIRTUAL DISK</div>
+        </section>
+
+        <section class="side-card">
+          <div class="side-heading"><div><span class="eyebrow">ACTIVITY</span><h2>Recent events</h2></div><span class="live-label">LIVE</span></div>
+          <div class="event-list" id="recentEvents"><p class="empty-note">No events recorded yet.</p></div>
+          <div class="side-foot">LATEST SYSTEM EVENTS</div>
+        </section>
+
+        <section class="side-card role-card">
+          <span class="eyebrow">SESSION CONTROL</span>
+          <h2>Access profile</h2>
+          <p id="roleText">You are signed in with developer privileges.</p>
+          <div class="role-actions">
+            <button id="developerButton" class="role-button active" type="button">Developer</button>
+            <button id="guestButton" class="role-button" type="button">Guest</button>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="app-footer">
+      <span>BLACKBOX © 2026</span>
+      <span>BUILT FOR LEARNING · NOT A REAL OPERATING SYSTEM</span>
+      <button id="resetButton" type="button">RESET LOCAL DATA</button>
+    </footer>
+  </div>
+
+  <div class="modal-backdrop hidden" id="helpModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-head"><div><span class="eyebrow">DOCUMENTATION</span><h2 id="modalTitle">BLACKBOX quick guide</h2></div><button class="icon-button" id="closeHelp" aria-label="Close">×</button></div>
+      <p>BLACKBOX is a browser-based terminal simulator hosted by a small Flask server. Its folders and files exist only in this application.</p>
+      <div class="guide-grid">
+        <div><b>Files</b><code>ls · mkdir · touch · cat</code><code>write · cd · pwd · tree · rm</code></div>
+        <div><b>System</b><code>help · status · system · uptime</code><code>whoami · access · login guest</code></div>
+        <div><b>Tools</b><code>find · grep · history · logs</code><code>df · free · ps · head · tail · wc</code></div>
+        <div><b>Fun</b><code>joke [count] · cowsay · coffee</code><code>matrix · easteregg · 42</code></div>
+        <div><b>Data</b><code>export · import · clear</code><code>reset (careful: clears local data)</code></div>
+      </div>
+      <p class="modal-note">Tip: use ↑ and ↓ to browse previous commands. Type <code>tutorial</code> in the terminal for a guided example.</p>
+    </div>
+  </div>
+  <div class="toast" id="toast" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
